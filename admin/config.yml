@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main # lub master, w zależności od gałęzi twojego repozytorium
+
+media_folder: "static/images/uploads" # Folder, gdzie będą przechowywane pliki multimedialne
+public_folder: "/images/uploads" # Folder publiczny, w którym będą dostępne te pliki
+
+media_library:
+  name: local # Domyślnie możesz użyć uploadcare lub innej biblioteki, np. local
+
+collections:
+  - name: "pages" # Kolekcja dla stron
+    label: "Strony"
+    files:
+      - file: "src/index.html" # Ścieżka do pliku, który chcesz edytować
+        label: "Strona główna"
+        name: "index"
+        fields:
+          - { label: "Tytuł", name: "title", widget: "string" }
+          - { label: "Treść", name: "body", widget: "markdown" }

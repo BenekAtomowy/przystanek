@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
+  <meta charset="UTF-8">
   <title>CMS</title>
-  <meta charset="utf-8" />
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Skrypt do ładowania Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+  <!-- Skrypt do ładowania Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js" defer></script>
 </head>
 <body>
-  <!-- Rozpocznij CMS -->
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <!-- Inicjalizacja CMS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      window.CMS_MANUAL_INIT = true;
+      CMS.init({
+        config: '/admin/config.yml' // lub '/config.yml' w zależności od miejsca umieszczenia pliku
+      });
+    });
+  </script>
 </body>
 </html>
