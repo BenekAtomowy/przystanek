@@ -44,6 +44,13 @@ gulp.task('copy-admin', () => {
     .pipe(sync.stream());             // Aktualizujemy browser-sync
 });
 
+// Zadanie do kopiowania folderu admin do folderu dist
+gulp.task('copy-styles-images', () => {
+  return gulp.src('./src/styles/images/*') // Kopiujemy wszystkie pliki z folderu admin
+    .pipe(gulp.dest('./dist/styles/images'))  // Umieszczamy je w folderze dist/admin
+    .pipe(sync.stream());             // Aktualizujemy browser-sync
+});
+
 // Zadanie do parsowania HTML
 gulp.task('html', () => {
   return processJson(); // Wywołanie funkcji do przetwarzania JSON i generowania HTML
@@ -76,7 +83,8 @@ gulp.task('serve', () => {
   gulp.watch('./src/scripts/*.js', gulp.series('js'));
   gulp.watch('./src/data/*.json', gulp.series('html')); // Obserwujemy zmiany w JSON
   gulp.watch('./src/admin/**/*', gulp.series('copy-admin')); // Obserwujemy zmiany w folderze admin
+  gulp.watch('./src/styles/images/*', gulp.series('copy-styles-images')); 
 });
 
 // Domyślne zadanie Gulp
-gulp.task('default', gulp.series('html', 'css', 'js', 'copy-admin', 'serve'));
+gulp.task('default', gulp.series('html', 'css', 'js', 'copy-admin', 'copy-styles-images', 'serve'));
