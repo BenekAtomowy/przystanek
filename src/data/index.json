@@ -1,5 +1,4 @@
 {
     "title": "Moja strona",
-    "header": "Witamy na naszej stronie",
-    "content": "To jest dynamiczna treść wypełniona z Netlify CMS."
+    "body": "Witamy na naszej stronie"
 }  
