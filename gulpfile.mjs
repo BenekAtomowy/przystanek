@@ -5,6 +5,7 @@ import cleanCSS from 'gulp-clean-css';
 import uglify from 'gulp-uglify';
 import browserSync from 'browser-sync';
 import fs from 'fs';
+import path from 'path';
 
 // Tworzymy instancję browser-sync
 const sync = browserSync.create();
@@ -53,14 +54,33 @@ gulp.task('copy-styles', () => {
 gulp.task('copy-fonts', () => {
   return gulp.src('./src/webfonts/**/*') // Kopiujemy wszystkie pliki z folderu admin
     .pipe(gulp.dest('./dist/webfonts/'))  // Umieszczamy je w folderze dist/admin
-    .pipe(sync.stream());             // Aktualizujemy browser-sync
+    // .pipe(sync.stream());             // Aktualizujemy browser-sync
 });
 
-gulp.task('copy-media', () => {
-  return gulp.src('./images/**/*') // Kopiujemy wszystkie pliki z folderu admin
-    .pipe(gulp.dest('./dist/images/'))  // Umieszczamy je w folderze dist/admin
-    .pipe(sync.stream());             // Aktualizujemy browser-sync
-});
+// Funkcja kopiowania plików
+function copyImages(done) {
+  const sourceDir = './src/styles/images';
+  const destDir = './dist/styles/images';
+
+  // Sprawdzamy, czy folder dest istnieje, jeśli nie, tworzymy go
+  if (!fs.existsSync(destDir)){
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+
+  // Pobieramy listę plików w folderze źródłowym
+  fs.readdirSync(sourceDir).forEach(file => {
+    const sourceFile = path.join(sourceDir, file);
+    const destFile = path.join(destDir, file);
+
+    // Kopiowanie pliku
+    fs.copyFileSync(sourceFile, destFile);
+  });
+
+  done();
+}
+
+// Rejestrujemy zadanie Gulp do kopiowania obrazów
+gulp.task('copy-media', copyImages);
 
 // Zadanie do parsowania HTML
 gulp.task('html', () => {
