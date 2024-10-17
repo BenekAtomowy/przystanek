@@ -111,6 +111,8 @@ gulp.task('serve', () => {
 // Domyślne zadanie Gulp
 gulp.task('default', gulp.series('html', 'css', 'js', 'copy-admin', 'copy-styles','copy-fonts','copy-media', 'serve'));
 
+gulp.task('prod', gulp.series('html', 'css', 'js', 'copy-admin', 'copy-styles','copy-fonts','copy-media'))
+
 function copyFiles( sourceDir, destDir){
   // Sprawdzamy, czy folder dest istnieje, jeśli nie, tworzymy go
   if (!fs.existsSync(destDir)){
