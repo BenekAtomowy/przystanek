@@ -62,20 +62,8 @@ function copyImages(done) {
   const sourceDir = './src/styles/images';
   const destDir = './dist/styles/images';
 
-  // Sprawdzamy, czy folder dest istnieje, jeśli nie, tworzymy go
-  if (!fs.existsSync(destDir)){
-    fs.mkdirSync(destDir, { recursive: true });
-  }
-
-  // Pobieramy listę plików w folderze źródłowym
-  fs.readdirSync(sourceDir).forEach(file => {
-    const sourceFile = path.join(sourceDir, file);
-    const destFile = path.join(destDir, file);
-
-    // Kopiowanie pliku
-    fs.copyFileSync(sourceFile, destFile);
-  });
-
+  copyFiles(sourceDir, destDir)
+  copyFiles("./images", "./dist/images" )
   done();
 }
 
@@ -122,3 +110,48 @@ gulp.task('serve', () => {
 
 // Domyślne zadanie Gulp
 gulp.task('default', gulp.series('html', 'css', 'js', 'copy-admin', 'copy-styles','copy-fonts','copy-media', 'serve'));
+
+function copyFiles( sourceDir, destDir){
+  // Sprawdzamy, czy folder dest istnieje, jeśli nie, tworzymy go
+  if (!fs.existsSync(destDir)){
+   fs.mkdirSync(destDir, { recursive: true });
+ }
+
+ // Pobieramy listę plików i katalogów w folderze źródłowym
+ fs.readdirSync(sourceDir).forEach(file => {
+   const sourceFile = path.join(sourceDir, file);
+   const destFile = path.join(destDir, file);
+
+   // Sprawdzamy, czy to plik, czy katalog
+   const stats = fs.lstatSync(sourceFile);
+
+   if (stats.isFile()) {
+     // Kopiowanie pliku
+     fs.copyFileSync(sourceFile, destFile);
+   } else if (stats.isDirectory()) {
+     // Rekurencyjne kopiowanie katalogu
+     copyDirectory(sourceFile, destFile);
+   }
+ });
+}
+
+
+// Funkcja do rekurencyjnego kopiowania katalogów
+function copyDirectory(sourceDir, destDir) {
+  if (!fs.existsSync(destDir)){
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+
+  fs.readdirSync(sourceDir).forEach(file => {
+    const sourceFile = path.join(sourceDir, file);
+    const destFile = path.join(destDir, file);
+
+    const stats = fs.lstatSync(sourceFile);
+
+    if (stats.isFile()) {
+      fs.copyFileSync(sourceFile, destFile);
+    } else if (stats.isDirectory()) {
+      copyDirectory(sourceFile, destFile);
+    }
+  });
+}
