@@ -111,7 +111,7 @@ input, select, textarea {
 		-webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-		color: #3fb1a3;
+		color: #008246;
 		text-decoration: none;
 		border-bottom: dotted 1px;
 	}
@@ -1813,7 +1813,7 @@ input, select, textarea {
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		textarea:focus {
-			border-color: #83d3c9;
+			border-color: #008246;
 		}
 
 	input[type="text"],
@@ -2159,7 +2159,7 @@ input, select, textarea {
 		input[type="reset"]:hover,
 		button:hover,
 		.button:hover {
-			background: rgba(188, 202, 206, 0.15);
+			background: rgba(188, 206, 194, 0.15);
 			border-color: inherit;
 		}
 
@@ -2168,8 +2168,8 @@ input, select, textarea {
 		input[type="reset"].primary,
 		button.primary,
 		.button.primary {
-			background: #83d3c9;
-			border-color: #83d3c9;
+			background: #008246;
+			border-color: #008246;
 			color: #fff !important;
 		}
 
@@ -2178,8 +2178,8 @@ input, select, textarea {
 			input[type="reset"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background: #96dad1 !important;
-				border-color: #96dad1 !important;
+				background: #008246 !important;
+				border-color: #008246 !important;
 			}
 
 		input[type="button"].fit,
@@ -2212,7 +2212,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style2 {
-			background-color: #83d3c9;
+			background-color: #008246;
 			background-image: url("images/light-bl.svg"), url("images/light-br.svg");
 			background-position: bottom left, bottom right;
 			background-repeat: no-repeat, no-repeat;
@@ -2235,7 +2235,7 @@ input, select, textarea {
 			.wrapper.style2 .button.primary {
 				background: #fff;
 				border-color: #fff;
-				color: #83d3c9 !important;
+				color: #008246 !important;
 			}
 
 				.wrapper.style2 input[type="button"].primary:hover,
@@ -2547,12 +2547,15 @@ input, select, textarea {
 			-webkit-animation-fill-mode: forwards;
 			-ms-animation-fill-mode: forwards;
 			animation-fill-mode: forwards;
-			background: rgba(52, 27, 43, 0.5);
+			background: rgba(0, 130, 70, 0.3);
 			color: #fff;
 			display: inline-block;
 			opacity: 0;
 			padding: 3em;
 			text-align: center;
+		}
+		#banner .alt{
+			background: rgba(216, 247, 77, 0.5);
 		}
 
 			#banner .inner header {
