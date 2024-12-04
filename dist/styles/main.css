@@ -2993,7 +2993,7 @@ input, select, textarea {
 				position: fixed;
 				top: 0;
 				width: 100%;
-				z-index: 10001;
+				z-index: 10003;
 			}
 
 				#navButton .toggle {
@@ -3036,9 +3036,7 @@ input, select, textarea {
 					}
 
 					#navButton .toggle:after {
-						background: rgba(163, 169, 170, 0.75);
 						border-radius: 2px;
-						content: '';
 						height: 40px;
 						left: 10px;
 						position: absolute;
@@ -3051,21 +3049,21 @@ input, select, textarea {
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
-				-moz-transform: translateX(-275px);
-				-webkit-transform: translateX(-275px);
-				-ms-transform: translateX(-275px);
-				transform: translateX(-275px);
+				-moz-transform: translateX(100%);
+				-webkit-transform: translateX(-100%);
+				-ms-transform: translateX(-100%);
+				transform: translateX(-100%);
 				-moz-transition: -moz-transform 0.5s ease;
 				-webkit-transition: -webkit-transform 0.5s ease;
 				-ms-transition: -ms-transform 0.5s ease;
 				transition: transform 0.5s ease;
 				display: block;
-				height: 100%;
+				height: auto;
 				left: 0;
 				overflow-y: auto;
 				position: fixed;
 				top: 0;
-				width: 275px;
+				width: 100%;
 				z-index: 10002;
 				background: #1c2021;
 				color: #fff;
@@ -3119,18 +3117,22 @@ input, select, textarea {
 					width: 5em;
 				}
 
-			body.navPanel-visible #page-wrapper {
-				-moz-transform: translateX(275px);
-				-webkit-transform: translateX(275px);
-				-ms-transform: translateX(275px);
-				transform: translateX(275px);
-			}
+			/* body.navPanel-visible #page-wrapper {
+				-moz-transform: translateX(100%);
+				-webkit-transform: translateX(100%);
+				-ms-transform: translateX(100%);
+				transform: translateX(100%);
+			} */
 
 			body.navPanel-visible #navButton {
-				-moz-transform: translateX(275px);
-				-webkit-transform: translateX(275px);
-				-ms-transform: translateX(275px);
-				transform: translateX(275px);
+				-moz-transform: translateX(calc(100% - 65px));
+				-webkit-transform: translateX(calc(100% - 65px));
+				-ms-transform: translateX(calc(100% - 65px));
+				transform: translateX(calc(100% - 65px));
+			}
+
+			body.navPanel-visible #navButton .toggle::before{
+				content: '\f00d';
 			}
 
 			body.navPanel-visible #navPanel {
